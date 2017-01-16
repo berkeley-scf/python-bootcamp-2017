@@ -1,0 +1,10 @@
+1) use Python on any SCF Linux machine
+
+make sure 'module list' shows python/3
+
+2) use BCE virtual machine, which has Python installed
+
+3) follow these D-Lab instructions to install Anaconda Python on your own machine
+
+4) https://jupyter.stat.berkeley.edu:8443
+(has python3 as default)
