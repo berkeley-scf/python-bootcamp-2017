@@ -621,6 +621,8 @@ the link above). We’ve already used a few (e.g.,
 `len(), type(), print()`). Here are a few more that we you will find
 useful.
 
+*zip* and *enumerate* create objects that you can iterate through, but you can't view the elements directly except by looping over them. They're useful either to convert to lists or to loop through element by element.
+
 ``` {.sourceCode .python}
 x = zip([1, 2], ["a", "b"])
 list(x)
@@ -741,42 +743,6 @@ add(y = -5, 3)
 - Recall how scoping works in R in terms of where objects are looked for if not found locally in a function (i.e., lexical scoping). Empirically assess how scoping works in Python.
 
 
-Classes
-=======
-
--   <https://docs.python.org/2/tutorial/classes.html>
-
-We've already seen a bunch of object-oriented behavior. Here we'll see how to make our own classes and objects that are instances (realizations) of a class.
-
-``` {.sourceCode .python}
-class Rectangle(object):
-    dim = 2  # class variable
-    counter = 0
-    def __init__(self, height, width):
-        self.height = height  # instance variable
-        self.width = width    # instance variable
-        self.set_diagonal()
-        Rectangle.counter += 1
-    def __repr__(self):
-        return("{0} by {1}".format(self.height, self.width))        
-    def area(self):
-        return(self.height*self.width)
-    def set_diagonal(self):
-        self.diagonal = pow(self.height**2 + self.width**2, 0.5)
-
-x = Rectangle(10, 5)
-
-x.dim
-x.dim = 'foo'
-x.dim # hmmm
-
-x.area()
-Rectangle.area(x)
-
-y = Rectangle(4, 8)
-y.counter
-x.counter
-```
 
 Data formats
 ============
@@ -984,6 +950,44 @@ Work through the material in [the Matplotlib tutorial](http://matplotlib.org/use
 - Now make an array of plots (in one figure) where each subplot is a different year.
 - Now modify the plot so that the color of the point indicates the continent and add a legend that explains this (hint: it's probably easier to do this with plt.scatter than plt.plot). Hint: This snippet of code can help with relating continents to particular colors: `dict(zip(conts, colors))`.
 - Find an outlier whose lifeExp is unexpectedly high or low and add text in the plot that associates the point with the name of the country (e.g., I suspect Cuba will be unexpectedly high and an oil-producing country may be unexpectedly low).
+
+Classes
+=======
+
+-   <https://docs.python.org/2/tutorial/classes.html>
+
+We've already seen a bunch of object-oriented behavior. Here we'll see how to make our own classes and objects that are instances (realizations) of a class.
+
+``` {.sourceCode .python}
+class Rectangle(object):
+    dim = 2  # class variable
+    counter = 0
+    def __init__(self, height, width):
+        self.height = height  # instance variable
+        self.width = width    # instance variable
+        self.set_diagonal()
+        Rectangle.counter += 1
+    def __repr__(self):
+        return("{0} by {1}".format(self.height, self.width))        
+    def area(self):
+        return(self.height*self.width)
+    def set_diagonal(self):
+        self.diagonal = pow(self.height**2 + self.width**2, 0.5)
+
+x = Rectangle(10, 5)
+
+x.dim
+x.dim = 'foo'
+x.dim # hmmm
+
+x.area()
+Rectangle.area(x)
+
+y = Rectangle(4, 8)
+y.counter
+x.counter
+```
+
 
 Mini-project
 ==============

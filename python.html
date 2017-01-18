@@ -420,6 +420,7 @@ x.isdisjoint                   </code></pre>
 <li><a href="https://docs.python.org/2/library/functions.html">https://docs.python.org/2/library/functions.html</a></li>
 </ul>
 <p>Python has several built-in functions (you can find a full list using the link above). We’ve already used a few (e.g., <code>len(), type(), print()</code>). Here are a few more that we you will find useful.</p>
+<p><em>zip</em> and <em>enumerate</em> create objects that you can iterate through, but you can't view the elements directly except by looping over them. They're useful either to convert to lists or to loop through element by element.</p>
 <pre class="sourceCode python"><code class="sourceCode python">x = <span class="dt">zip</span>([<span class="dv">1</span>, <span class="dv">2</span>], [<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>])
 <span class="dt">list</span>(x)</code></pre>
 <pre class="sourceCode python"><code class="sourceCode python"><span class="dt">enumerate</span>([<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>])
@@ -508,38 +509,6 @@ add(y = -<span class="dv">5</span>, <span class="dv">3</span>)</code></pre>
 <li>What happens if you modify a single number (scalar) within a function in Python; why do you think this is?</li>
 <li>Recall how scoping works in R in terms of where objects are looked for if not found locally in a function (i.e., lexical scoping). Empirically assess how scoping works in Python.</li>
 </ul>
-<h1 id="classes">Classes</h1>
-<ul>
-<li><a href="https://docs.python.org/2/tutorial/classes.html">https://docs.python.org/2/tutorial/classes.html</a></li>
-</ul>
-<p>We've already seen a bunch of object-oriented behavior. Here we'll see how to make our own classes and objects that are instances (realizations) of a class.</p>
-<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">class</span> Rectangle(<span class="dt">object</span>):
-    dim = <span class="dv">2</span>  <span class="co"># class variable</span>
-    counter = <span class="dv">0</span>
-    <span class="kw">def</span> <span class="ot">__init__</span>(<span class="ot">self</span>, height, width):
-        <span class="ot">self</span>.height = height  <span class="co"># instance variable</span>
-        <span class="ot">self</span>.width = width    <span class="co"># instance variable</span>
-        <span class="ot">self</span>.set_diagonal()
-        Rectangle.counter += <span class="dv">1</span>
-    <span class="kw">def</span> <span class="ot">__repr__</span>(<span class="ot">self</span>):
-        <span class="kw">return</span>(<span class="st">&quot;</span><span class="ot">{0}</span><span class="st"> by </span><span class="ot">{1}</span><span class="st">&quot;</span>.<span class="dt">format</span>(<span class="ot">self</span>.height, <span class="ot">self</span>.width))        
-    <span class="kw">def</span> area(<span class="ot">self</span>):
-        <span class="kw">return</span>(<span class="ot">self</span>.height*<span class="ot">self</span>.width)
-    <span class="kw">def</span> set_diagonal(<span class="ot">self</span>):
-        <span class="ot">self</span>.diagonal = <span class="dt">pow</span>(<span class="ot">self</span>.height**<span class="dv">2</span> + <span class="ot">self</span>.width**<span class="dv">2</span>, <span class="fl">0.5</span>)
-
-x = Rectangle(<span class="dv">10</span>, <span class="dv">5</span>)
-
-x.dim
-x.dim = <span class="st">&#39;foo&#39;</span>
-x.dim <span class="co"># hmmm</span>
-
-x.area()
-Rectangle.area(x)
-
-y = Rectangle(<span class="dv">4</span>, <span class="dv">8</span>)
-y.counter
-x.counter</code></pre>
 <h1 id="data-formats">Data formats</h1>
 <h2 id="csv">CSV</h2>
 <ul>
@@ -685,6 +654,38 @@ dat2007[<span class="st">&#39;lifeExpZ&#39;</span>] = dat2007.groupby(<span clas
 <li>Now modify the plot so that the color of the point indicates the continent and add a legend that explains this (hint: it's probably easier to do this with plt.scatter than plt.plot). Hint: This snippet of code can help with relating continents to particular colors: <code>dict(zip(conts, colors))</code>.</li>
 <li>Find an outlier whose lifeExp is unexpectedly high or low and add text in the plot that associates the point with the name of the country (e.g., I suspect Cuba will be unexpectedly high and an oil-producing country may be unexpectedly low).</li>
 </ul>
+<h1 id="classes">Classes</h1>
+<ul>
+<li><a href="https://docs.python.org/2/tutorial/classes.html">https://docs.python.org/2/tutorial/classes.html</a></li>
+</ul>
+<p>We've already seen a bunch of object-oriented behavior. Here we'll see how to make our own classes and objects that are instances (realizations) of a class.</p>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">class</span> Rectangle(<span class="dt">object</span>):
+    dim = <span class="dv">2</span>  <span class="co"># class variable</span>
+    counter = <span class="dv">0</span>
+    <span class="kw">def</span> <span class="ot">__init__</span>(<span class="ot">self</span>, height, width):
+        <span class="ot">self</span>.height = height  <span class="co"># instance variable</span>
+        <span class="ot">self</span>.width = width    <span class="co"># instance variable</span>
+        <span class="ot">self</span>.set_diagonal()
+        Rectangle.counter += <span class="dv">1</span>
+    <span class="kw">def</span> <span class="ot">__repr__</span>(<span class="ot">self</span>):
+        <span class="kw">return</span>(<span class="st">&quot;</span><span class="ot">{0}</span><span class="st"> by </span><span class="ot">{1}</span><span class="st">&quot;</span>.<span class="dt">format</span>(<span class="ot">self</span>.height, <span class="ot">self</span>.width))        
+    <span class="kw">def</span> area(<span class="ot">self</span>):
+        <span class="kw">return</span>(<span class="ot">self</span>.height*<span class="ot">self</span>.width)
+    <span class="kw">def</span> set_diagonal(<span class="ot">self</span>):
+        <span class="ot">self</span>.diagonal = <span class="dt">pow</span>(<span class="ot">self</span>.height**<span class="dv">2</span> + <span class="ot">self</span>.width**<span class="dv">2</span>, <span class="fl">0.5</span>)
+
+x = Rectangle(<span class="dv">10</span>, <span class="dv">5</span>)
+
+x.dim
+x.dim = <span class="st">&#39;foo&#39;</span>
+x.dim <span class="co"># hmmm</span>
+
+x.area()
+Rectangle.area(x)
+
+y = Rectangle(<span class="dv">4</span>, <span class="dv">8</span>)
+y.counter
+x.counter</code></pre>
 <h1 id="mini-project">Mini-project</h1>
 <p>Please open <em>project.html</em> and work through the analysis of the Senatorial tweets with your group.</p>
 <h1 id="a-note-on-the-contents">A Note on the Contents</h1>
