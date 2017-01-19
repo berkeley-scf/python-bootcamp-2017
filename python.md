@@ -2,8 +2,16 @@
 title: Introduction to Python
 ...
 
+
 Background
 ================
+
+Etherpad
+-----------
+
+We'll use a shared online document hosted at etherpad.net to share code snippets, problem solutions, syntax, etc.
+
+Please open <https://etherpad.net/p/python-bootcamp-2017> in a browser window.
 
 Preparation
 ---------------
@@ -95,10 +103,10 @@ else:
     print('a is small')
 
 if a>=4:    
-    print('a is big')
-    if(a == 4):
+  print('a is big')
+  if(a == 4):
         print('a is 4')
-    else:
+  else:
         print('a is not 4')
 ```
 
@@ -281,6 +289,19 @@ np.ndim(a)
     near the end of the docstring and see whether you can figure out how
     you might use this functionality. 
 
+
+Decoding error messages
+--------------------------
+
+Let's run the following code and try to tease out where the error is. The tricky part is that the error occurs within a function where the function comes from a module (separate code file).
+
+``` {.sourceCode .python}
+import days
+
+days.print_friday_message()
+```
+
+The list of function calls that led to the error is called a *traceback*.  (Note that in R you can get similar output using `traceback()` after an error or setting `options(error = recover)` before an error.)
 
 Data Structures
 ===============
@@ -628,10 +649,14 @@ x = zip([1, 2], ["a", "b"])
 list(x)
 ```
 
+That's sort of like *cbind* in R.
+
 ``` {.sourceCode .python}
 enumerate(["a", "b"])
 list(enumerate(["a", "b"]))
 ```
+
+We'll soon see an example usage of enumerate within the context of looping.
 
 Some other useful built-in functions are  `abs()`, `all()`, `any()`, `dict()`,
     `dir()`, `id()`, `list()`, and `set()`.
@@ -701,7 +726,12 @@ import string
 letters = string.ascii_lowercase
 
 [l[1] for l in enumerate(letters) if l[0] > 13] 
+
+x = zip(['clinton', 'bush', 'obama', 'trump'], ['D', 'R', 'D', 'R'])
+for pres,party in x:
+    print(pres, party)
 ```
+
 
 **Exercises**
 

@@ -32,6 +32,9 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <h1 class="title">Introduction to Python</h1>
 </div>
 <h1 id="background">Background</h1>
+<h2 id="etherpad">Etherpad</h2>
+<p>We'll use a shared online document hosted at etherpad.net to share code snippets, problem solutions, syntax, etc.</p>
+<p>Please open <a href="https://etherpad.net/p/python-bootcamp-2017">https://etherpad.net/p/python-bootcamp-2017</a> in a browser window.</p>
 <h2 id="preparation">Preparation</h2>
 <p>This tutorial assumes you are familiar with R (or possibly another high-level language such as MATLAB).</p>
 <p>You will also need Python and IPython installed on your computer, as well as a few core additional packages, including re, numpy, scipy, matplotlib, and pandas.</p>
@@ -81,10 +84,10 @@ code > span.er { color: #ff0000; font-weight: bold; }
     <span class="dt">print</span>(<span class="st">&#39;a is small&#39;</span>)
 
 <span class="kw">if</span> a&gt;=<span class="dv">4</span>:    
-    <span class="dt">print</span>(<span class="st">&#39;a is big&#39;</span>)
-    <span class="kw">if</span>(a == <span class="dv">4</span>):
+  <span class="dt">print</span>(<span class="st">&#39;a is big&#39;</span>)
+  <span class="kw">if</span>(a == <span class="dv">4</span>):
         <span class="dt">print</span>(<span class="st">&#39;a is 4&#39;</span>)
-    <span class="kw">else</span>:
+  <span class="kw">else</span>:
         <span class="dt">print</span>(<span class="st">&#39;a is not 4&#39;</span>)</code></pre>
 <h2 id="objects">Objects</h2>
 <p>Everything is an object in Python. Roughly, this means that it can be tagged with a variable and passed as an argument to a function. Often it means that everything has <em>attributes</em> and <em>methods</em>.</p>
@@ -190,6 +193,12 @@ np.ndim(a)</code></pre></li>
 <li>Type <code>np.ndarray?</code> at an IPython prompt. Briefly skim the docstring. <code>ndarray</code> is the basic datastructure provided by NumPy. We will examine it in much more detail in the next chapter.</li>
 <li><p>Type <code>np.</code> followed by the <code>&lt;Tab&gt;</code> key at an IPython prompt. Choose two or three of the completions and use <code>?</code> to view their docstrings. In particular, pay attention to the examples provided near the end of the docstring and see whether you can figure out how you might use this functionality.</p></li>
 </ul>
+<h2 id="decoding-error-messages">Decoding error messages</h2>
+<p>Let's run the following code and try to tease out where the error is. The tricky part is that the error occurs within a function where the function comes from a module (separate code file).</p>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="ch">import</span> days
+
+days.print_friday_message()</code></pre>
+<p>The list of function calls that led to the error is called a <em>traceback</em>. (Note that in R you can get similar output using <code>traceback()</code> after an error or setting <code>options(error = recover)</code> before an error.)</p>
 <h1 id="data-structures">Data Structures</h1>
 <p>Python has a number of basic data structure types that are widely used. There are both similarities and differences from basic data structures in R.</p>
 <ul>
@@ -423,8 +432,10 @@ x.isdisjoint                   </code></pre>
 <p><em>zip</em> and <em>enumerate</em> create objects that you can iterate through, but you can't view the elements directly except by looping over them. They're useful either to convert to lists or to loop through element by element.</p>
 <pre class="sourceCode python"><code class="sourceCode python">x = <span class="dt">zip</span>([<span class="dv">1</span>, <span class="dv">2</span>], [<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>])
 <span class="dt">list</span>(x)</code></pre>
+<p>That's sort of like <em>cbind</em> in R.</p>
 <pre class="sourceCode python"><code class="sourceCode python"><span class="dt">enumerate</span>([<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>])
 <span class="dt">list</span>(<span class="dt">enumerate</span>([<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>]))</code></pre>
+<p>We'll soon see an example usage of enumerate within the context of looping.</p>
 <p>Some other useful built-in functions are <code>abs()</code>, <code>all()</code>, <code>any()</code>, <code>dict()</code>, <code>dir()</code>, <code>id()</code>, <code>list()</code>, and <code>set()</code>.</p>
 <h1 id="control-flow">Control flow</h1>
 <ul>
@@ -475,7 +486,11 @@ y = [-<span class="dv">4</span>, <span class="dv">3</span>, -<span class="dv">1<
 <span class="ch">import</span> string
 letters = string.ascii_lowercase
 
-[l[<span class="dv">1</span>] <span class="kw">for</span> l in <span class="dt">enumerate</span>(letters) <span class="kw">if</span> l[<span class="dv">0</span>] &gt; <span class="dv">13</span>] </code></pre>
+[l[<span class="dv">1</span>] <span class="kw">for</span> l in <span class="dt">enumerate</span>(letters) <span class="kw">if</span> l[<span class="dv">0</span>] &gt; <span class="dv">13</span>] 
+
+x = <span class="dt">zip</span>([<span class="st">&#39;clinton&#39;</span>, <span class="st">&#39;bush&#39;</span>, <span class="st">&#39;obama&#39;</span>, <span class="st">&#39;trump&#39;</span>], [<span class="st">&#39;D&#39;</span>, <span class="st">&#39;R&#39;</span>, <span class="st">&#39;D&#39;</span>, <span class="st">&#39;R&#39;</span>])
+<span class="kw">for</span> pres,party in x:
+    <span class="dt">print</span>(pres, party)</code></pre>
 <p><strong>Exercises</strong></p>
 <ul>
 <li>See what <code>[1, 2, 3] + 3</code> returns. Try to explain what happened and why.</li>

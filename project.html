@@ -36,11 +36,12 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <h1 id="questions">Questions</h1>
 <ol style="list-style-type: decimal">
 <li><p>Load the <em>senators-list.json</em> and <em>timelines.json</em> files as objects called <em>senators</em> and <em>timelines</em>.</p></li>
-<li><p>What type of datastructure is timelines? How many timelines are there? What does each timeline correspond to?</p></li>
+<li><p>What type of datastructure is <em>timelines</em>? How many timelines are there? What does each timeline correspond to?</p></li>
 <li><p>Make a list of the number of followers each senator has.</p></li>
 <li><p>What is the screen name of the senator with the largest number of followers.</p></li>
 <li><p>Make a list of lists where the outer list represents senators and the inner list contains each senator's tweets, and call it <em>tweets</em>.</p></li>
-<li><p>Write a function that takes tweet and returns a cleaned up version of the tweet. Here is some example code to get you started:</p>
+<li><p>Write a function, called <em>remove_punct</em>, which takes a word and returns the word with all punctuation characters removed, except for those that occur within a word.</p></li>
+<li><p>Write a function that takes tweet and returns a cleaned up version of the tweet. Here is an example function to get you started:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">def</span> clean(tweet)<span class="kw">:</span>
     <span class="kw">cleaned_words</span> = [word.lower() <span class="kw">for</span> <span class="kw">word</span> in tweet.split() <span class="kw">if</span>
                  <span class="st">&#39;http&#39;</span> <span class="kw">not</span> in word and
@@ -49,22 +50,20 @@ code > span.er { color: #ff0000; font-weight: bold; }
     <span class="kw">return</span> <span class="st">&#39; &#39;</span>.join(cleaned_words)
 
 <span class="kw">clean</span>(tweets[0][0])</code></pre>
-<p>If your goal is to convert the tweet into a discrete set of words, what is going wrong here?</p></li>
-<li><p>Write a function, called <em>remove_punct</em>, which takes a word and returns the word with all punctuation characters removed, except for those that occur within a word.</p></li>
+<p>If your goal is to convert the tweet into a discrete set of words, what is going wrong here? Fix up and extend the example function.</p></li>
 <li><p>Use the following file to create a list, called <em>stopwords</em>, that contains common english words. <a href="http://www.textfixer.com/resources/common-english-words.txt">http://www.textfixer.com/resources/common-english-words.txt</a> Make sure to pull the data into Python by writing Python code to download and suck the data into Python.</p></li>
-<li><p>Write a function, called <em>tokenize</em>, which takes a tweet cleans it as well as removes all punctuation and stopwords.</p></li>
+<li><p>Write a function, called <em>tokenize</em>, which takes a tweet, cleans it, and removes all punctuation and stopwords.</p></li>
 <li><p>Create a list of lists, tweets_content, using your <em>tokenize</em> function.</p></li>
 <li><p>Create a list, <em>tokens</em>, where each senator's tweets are made into a single string.</p></li>
-<li><p>???Create a list of words with duplicates.???</p></li>
-<li><p>) Create a Pandas dataFrame with the following columns: senator name or handle, party of the senator, and number of times 'Obama' is mentioned in each senator's tweets.</p>
-<p>You can use this to create the party column:</p>
+<li><p>) Create a Pandas dataFrame with the following columns: senator name or handle, party of the senator, and number of times a prominent politician is mentioned in each senator's tweets. You might count the number of 'Obama', 'Trump', or 'Clinton' references.</p>
+<p>You can use this to create the party column (1=Republican, 0=Democratic):</p>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">party</span> = np.array([1,0,0,1,1,1,0,0,0,1,0,0,1,1,1,1,0,0,0,0,1,0,0,0,1,1,1,1,0,0,0,0,1,0,1,0,1,1,1,0,1,0,1,0,1,1,0,1,0,1,0,1,0,1,0,0,0,0,1,1,0,1,1,1,0,1,1,1,0,0,1,0,0,0,1,0,0,0,1,1,1,1,0,1,1,1,0,1,1,1,0,1,0,1,1,0,1,0,1,1])</code></pre></li>
-<li><p>) Use a Poisson GLM to assess the relationship between party and number of Obama mentions. Does one party tend to mention Obama more in their tweets?</p>
+<li><p>) Use a Poisson GLM to assess the relationship between party and number of Obama/Trump/Clinton mentions. Does one party tend to mention Obama/Trump/Clinton more in their tweets?</p>
 <p>Here's some syntax to help you get started:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">import</span> statsmodels.api as sm
 <span class="kw">model</span> = sm.GLM(endog = .,  exog = ., family = sm.families.Poisson())
 <span class="kw">model.fit</span>()</code></pre>
-<p>Does the statistical result make sense in light of the number of total mentions of Obama by Republicans and the number of total mentions by Democrats?</p></li>
+<p>Does the statistical result make sense in light of the number of total mentions of Obama/Trump/Clinton by Republicans and the number of total mentions by Democrats?</p></li>
 <li><p>) Use <em>matplotlib</em> to make histograms of the number of Obama mentions by senator, stratified by party.</p>
 <p>Is this consistent with the results of your statistical analysis?</p></li>
 </ol>
