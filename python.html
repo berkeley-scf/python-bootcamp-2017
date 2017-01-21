@@ -74,7 +74,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <p>Unlike most languages, in Python indentation determines code blocks, including functions, loops, and if-else statements.</p>
 <p>The standard is one tab or 4 spaces, but you can use other spacing if it's consistent within a block of code.</p>
 <pre class="sourceCode python"><code class="sourceCode python">a = <span class="dv">3</span>
- a = <span class="dv">3</span>  <span class="co"># this will cause an IndentationError</span>
+ a = <span class="dv">3</span>  <span class="co"># this will cause an IndentationError, at least in Python itself, if not IPython</span>
 
 <span class="kw">if</span> a&gt;=<span class="dv">4</span>:    
     <span class="dt">print</span>(<span class="st">&#39;a is big&#39;</span>)
@@ -91,7 +91,8 @@ code > span.er { color: #ff0000; font-weight: bold; }
         <span class="dt">print</span>(<span class="st">&#39;a is not 4&#39;</span>)</code></pre>
 <h2 id="objects">Objects</h2>
 <p>Everything is an object in Python. Roughly, this means that it can be tagged with a variable and passed as an argument to a function. Often it means that everything has <em>attributes</em> and <em>methods</em>.</p>
-<p>Certain objects in Python are mutable (e.g., lists, dictionaries), while other objects are immutable (e.g., tuples, strings, sets). Many objects can be composite (e.g., a list of dictionaries or a dictionary of lists, tuples, and strings).</p>
+<p>Certain objects in Python are mutable (e.g., lists, dictionaries), while other objects are immutable (e.g., tuples, strings, sets). Mutable means one can change parts of the object.</p>
+<p>Many objects can be composite (e.g., a list of dictionaries or a dictionary of lists, tuples, and strings).</p>
 <pre class="sourceCode python"><code class="sourceCode python">myList = [<span class="dv">1</span>, <span class="dv">2</span>, <span class="st">&#39;foo&#39;</span>]
 myList[<span class="dv">1</span>] = <span class="fl">2.5</span>
 myList
@@ -122,7 +123,7 @@ test.a
 
 hello()
 a</code></pre>
-<pre class="sourceCode python"><code class="sourceCode python"><span class="ch">import</span> * <span class="ch">from</span> test
+<pre class="sourceCode python"><code class="sourceCode python"><span class="ch">from</span> test <span class="ch">import</span> *
 
 hello()
 a</code></pre>
@@ -142,7 +143,7 @@ a</code></pre>
 </ul>
 <p>The first link above is the official &quot;Style Guide for Python Code&quot;, usually referred to as PEP8 (PEP is an acronym for Python Enhancement Proposal). There are a couple of potentially helpful tools for helping you conform to the standard. The <a href="https://pypi.python.org/pypi/pep8">pep8</a> package that provides a commandline tool to check your code against some of the PEP8 standard conventions. Similarly, <a href="https://pypi.python.org/pypi/autopep8">autopep8</a> provides a tool to automatically format your code so that it conforms to the PEP8 standards. I have used both a little and they seem to work fairly well.</p>
 <h2 id="documentation-and-getting-help">Documentation and getting help</h2>
-<p>The last two links above discuss the NumPy docstring [^1] standard. Let’s briefly see how you might benefit from NumPy docstrings in practice.</p>
+<p>The last two links above discuss the NumPy docstring standard. Let’s briefly see how you might benefit from NumPy docstrings in practice.</p>
 <pre class="sourceCode python"><code class="sourceCode python">In [<span class="dv">1</span>]: <span class="ch">import</span> numpy <span class="ch">as</span> np
 
 In [<span class="dv">2</span>]: np.ndim?
@@ -182,7 +183,7 @@ Examples
 <p><strong>Exercises</strong></p>
 <ul>
 <li>What happens if you type <code>np.ndim??</code> (i.e., use two question marks)?</li>
-<li><p>What does ndim() do? How does it execute under the hood? Consider why the following uses of <em>ndim</em> both work.</p>
+<li><p>What does <code>ndim()</code> do? How does it execute under the hood? Consider why the following uses of <em>ndim</em> both work.</p>
 <pre class="sourceCode python"><code class="sourceCode python">a = np.array([<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>])
 a.ndim
 np.ndim(a)</code></pre>
@@ -276,7 +277,8 @@ string.digits[-<span class="dv">1</span>]</code></pre>
 <p>Note that indexing starts at 0 (unlike R and Fortran, but like C). Also negative integers index starting from the end of the sequence. You can find the length of a sequence using the <em>len</em> function.</p></li>
 <li><p><strong>Slicing</strong> Slicing allows you to select a subset of a string (or any sequence) by specifying start and stop indices as well as a step, which you specify using the <code>start:stop:step</code> notation inside of square braces.</p>
 <pre class="sourceCode python"><code class="sourceCode python">string.digits[<span class="dv">1</span>::<span class="dv">2</span>]
-string.digits[<span class="dv">9</span>::-<span class="dv">1</span>]</code></pre></li>
+string.digits[:<span class="dv">5</span>:-<span class="dv">1</span>]
+string.digits[-<span class="dv">3</span>:-<span class="dv">7</span>:-<span class="dv">1</span>]</code></pre></li>
 <li><p><strong>Subsequence testing</strong></p>
 <pre class="sourceCode python"><code class="sourceCode python"><span class="co">&#39;23&#39;</span> in string.digits 
 <span class="co">&#39;25&#39;</span> not in string.digits</code></pre></li>
@@ -329,7 +331,7 @@ string1.__hash__          string1.__str__
 string1.__init__          string1.__subclasshook__</code></pre>
 <p><strong>Exercises</strong></p>
 <ul>
-<li>Using this string: <code>x = The ant wants what all ants want.</code>, solve the following string manipulation problems using string indexing, slicing, subsequence testing, and methods
+<li>Using this string: <code>x = 'The ant wants what all ants want.'</code>, solve the following string manipulation problems using string indexing, slicing, subsequence testing, and methods
 <ol style="list-style-type: decimal">
 <li>Convert the string to all lower case letters (don’t change x).</li>
 <li>Count the number of occurrences of the substring <code>ant</code>.</li>
@@ -339,7 +341,7 @@ string1.__init__          string1.__subclasshook__</code></pre>
 <li>Do the same thing except using a string method instead.</li>
 </ol></li>
 <li>What can you do with the <em>in</em> and <em>not in</em> operators? What R operator is this like and how is it different?</li>
-<li>Figure out what code you could test to figure out if Python is explicitly counting the number of characters when it does <code>len(x)</code>?</li>
+<li>Figure out what code you could run to figure out if Python is explicitly counting the number of characters when it does <code>len(x)</code>?</li>
 <li>Compare the time for computing the length of a (long) string in Python and R. What can you infer about what is happening behind the scenes?</li>
 </ul>
 <h2 id="tuples">Tuples</h2>
@@ -378,7 +380,8 @@ dice+dice[::-<span class="dv">1</span>]
 <span class="dv">1</span> in dice</code></pre>
 <p><strong>Exercises</strong></p>
 <ul>
-<li>Create a list of numbers. Reverse the order of the items in the list using slicing. Now reverse the order of the items using a list method. How does using the method differ from slicing? Do you think you think tuples have a method to reverse the order of its items? Why or why not? Check to see if you are correct or not.</li>
+<li>Create a list of numbers. Reverse the order of the items in the list using slicing. Now reverse the order of the items using a list method. How does using the method differ from slicing?</li>
+<li>Do you think you think tuples have a method to reverse the order of its items? Why or why not? Check to see if you are correct or not.</li>
 <li>Using a list method sort your numbers. Create a list of strings and sort it.</li>
 <li>Figure out some different ways of combining your list of numbers with your list of strings to create a single list of mixed type elements.</li>
 <li>Now try to sort the resulting list. What happens?</li>
@@ -388,9 +391,7 @@ b = a
 <span class="dt">id</span>(a)
 <span class="dt">id</span>(b)
 <span class="co"># this should confirm what you might suspect</span>
-a[<span class="dv">1</span>] = <span class="dv">5</span>
-a
-b</code></pre></li>
+a[<span class="dv">1</span>] = <span class="dv">5</span></code></pre></li>
 </ul>
 <h2 id="dictionaries">Dictionaries</h2>
 <p>Dictionaries are mutable, unordered collections of key-value pairs.</p>
@@ -481,7 +482,7 @@ x.isdisjoint                   </code></pre>
 <pre class="sourceCode python"><code class="sourceCode python">[x <span class="kw">for</span> x in <span class="dt">range</span>(<span class="dv">4</span>)]
 
 y = [-<span class="dv">4</span>, <span class="dv">3</span>, -<span class="dv">1</span>, <span class="fl">2.5</span>, <span class="dv">7</span>]
-[x <span class="kw">for</span> x in y <span class="kw">if</span> x &gt; <span class="dv">0</span>]
+[x <span class="kw">for</span> x in y <span class="kw">if</span> x &gt; <span class="dv">0</span>]  <span class="co"># list comprehension</span>
 
 <span class="ch">import</span> string
 letters = string.ascii_lowercase
@@ -519,7 +520,7 @@ add(y = -<span class="dv">5</span>, <span class="dv">3</span>)</code></pre>
 <p><strong>Exercises</strong></p>
 <ul>
 <li>Define a function that will take the sqrt of a number if it is bigger than 0 or set it to 0 otherwise.</li>
-<li>Now use the function in a list comprehension to operate on a list of number.</li>
+<li>Now use the function in a list comprehension to operate on a list of numbers.</li>
 <li>What happens if you modify a list within a function in Python; why do you think this is?</li>
 <li>What happens if you modify a single number (scalar) within a function in Python; why do you think this is?</li>
 <li>Recall how scoping works in R in terms of where objects are looked for if not found locally in a function (i.e., lexical scoping). Empirically assess how scoping works in Python.</li>
@@ -552,6 +553,7 @@ y</code></pre>
 <p><strong>Exercise</strong></p>
 <ul>
 <li>One of the nice things above the JSON format is that it so well structured that it easy for a machine to parse, but simple enough that it easy for humans to read. By default <code>json.dump</code> writes everything out to disk without line breaks. For readability purposes, use <code>json.dump?</code> to figure out how to pretty-print the text as well as sort it alphabetically by key.</li>
+<li>Read in one of the JSON files in the <em>project</em> directory and experiment with pretty-printing it when you dump it back out to a file.</li>
 </ul>
 <h1 id="standard-library">Standard library</h1>
 <ul>
@@ -656,7 +658,7 @@ dat2007.groupby(<span class="st">&#39;continent&#39;</span>).mean()
 dat2007[<span class="st">&#39;lifeExpZ&#39;</span>] = dat2007.groupby(<span class="st">&#39;continent&#39;</span>)[<span class="st">&#39;lifeExp&#39;</span>].transform(stdize)</code></pre>
 <p><strong>Exercise</strong></p>
 <ul>
-<li>Use <em>pd.merge()</em> to merge the continent means for 2007 back into the original <em>dat2007</em> dataFrame.</li>
+<li>Use <em>pd.merge()</em> to merge the continent means for life expectancy for 2007 back into the original <em>dat2007</em> dataFrame.</li>
 <li>Explore the pandas documentation to see if there is a way to add the continent means as a column without an explicit merge (i.e., mimicing capability built into dply)?</li>
 </ul>
 <h2 id="matplotlib">Matplotlib</h2>

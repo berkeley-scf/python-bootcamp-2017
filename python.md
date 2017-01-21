@@ -93,7 +93,7 @@ The standard is one tab or 4 spaces, but you can use other spacing if it's consi
 
 ``` {.sourceCode .python}
 a = 3
- a = 3  # this will cause an IndentationError
+ a = 3  # this will cause an IndentationError, at least in Python itself, if not IPython
 
 if a>=4:    
     print('a is big')
@@ -118,7 +118,9 @@ tagged with a variable and passed as an argument to a function. Often it
 means that everything has *attributes* and *methods*.
 
 Certain objects in Python are mutable (e.g., lists, dictionaries), while
-other objects are immutable (e.g., tuples, strings, sets). Many objects
+other objects are immutable (e.g., tuples, strings, sets). Mutable means one can change parts of the object.
+
+Many objects
 can be composite (e.g., a list of dictionaries or a dictionary of lists,
 tuples, and strings).
 
@@ -179,7 +181,7 @@ a
 ```
 
 ``` {.sourceCode .python}
-import * from test
+from test import *
 
 hello()
 a
@@ -221,7 +223,7 @@ standards. I have used both a little and they seem to work fairly well.
 Documentation and getting help
 -------------------------------
 
-The last two links above discuss the NumPy docstring [^1] standard. Let’s
+The last two links above discuss the NumPy docstring standard. Let’s
 briefly see how you might benefit from NumPy docstrings in practice.
 
 ``` {.sourceCode .python}
@@ -267,7 +269,7 @@ Docstrings are an important part of Python. A docstring is a character string th
 **Exercises**
 
 -   What happens if you type `np.ndim??` (i.e., use two question marks)?
--   What does ndim() do? How does it execute under the hood?
+-   What does `ndim()` do? How does it execute under the hood?
     Consider why the following uses of *ndim* both work.
 ``` {.sourceCode .python}
 a = np.array([0, 1, 2])
@@ -427,7 +429,8 @@ we can demonstrate with strings.
 
     ``` {.sourceCode .python}    
     string.digits[1::2]
-    string.digits[9::-1]
+    string.digits[:5:-1]
+    string.digits[-3:-7:-1]
     ```
 
 -   **Subsequence testing**
@@ -499,7 +502,7 @@ string1.__init__          string1.__subclasshook__
 
 **Exercises**
 
-- Using this string: `x = The ant wants what all ants want.`, solve the following string manipulation problems using string indexing, slicing, subsequence testing, and methods
+- Using this string: `x = 'The ant wants what all ants want.'`, solve the following string manipulation problems using string indexing, slicing, subsequence testing, and methods
     1.  Convert the string to all lower case letters (don’t change x).
     2.  Count the number of occurrences of the substring `ant`.
     3.  Create a list of the words occurring in `x`. Make sure to remove
@@ -510,7 +513,7 @@ string1.__init__          string1.__subclasshook__
     `The tna wants what all ants want.`
     6.  Do the same thing except using a string method instead.
 - What can you do with the *in* and *not in* operators?  What R operator is this like and how is it different?
-- Figure out what code you could test to figure out if Python is explicitly counting the number of characters when it does `len(x)`?
+- Figure out what code you could run to figure out if Python is explicitly counting the number of characters when it does `len(x)`?
 - Compare the time for computing the length of a (long) string in Python and R. What can you infer about what is happening behind the scenes?
 
 
@@ -567,7 +570,8 @@ dice+dice[::-1]
 
 -  Create a list of numbers. Reverse the order of the items in the list
     using slicing. Now reverse the order of the items using a list
-    method. How does using the method differ from slicing? Do you think
+    method. How does using the method differ from slicing? 
+- Do you think
     you think tuples have a method to reverse the order of its items?
     Why or why not? Check to see if you are correct or not.
 -  Using a list method sort your numbers. Create a list of strings and
@@ -582,8 +586,6 @@ id(a)
 id(b)
 # this should confirm what you might suspect
 a[1] = 5
-a
-b
 ```
 
 Dictionaries
@@ -720,7 +722,7 @@ handle this task.
 [x for x in range(4)]
 
 y = [-4, 3, -1, 2.5, 7]
-[x for x in y if x > 0]
+[x for x in y if x > 0]  # list comprehension
 
 import string
 letters = string.ascii_lowercase
@@ -767,7 +769,7 @@ add(y = -5, 3)
 **Exercises**
 
 - Define a function that will take the sqrt of a number if it is bigger than 0 or set it to 0 otherwise.
-- Now use the function in a list comprehension to operate on a list of number.
+- Now use the function in a list comprehension to operate on a list of numbers.
 - What happens if you modify a list within a function in Python; why do you think this is?
 - What happens if you modify a single number (scalar) within a function in Python; why do you think this is?
 - Recall how scoping works in R in terms of where objects are looked for if not found locally in a function (i.e., lexical scoping). Empirically assess how scoping works in Python.
@@ -820,6 +822,7 @@ quess that you want it to call out to the underlying operating system.
     everything out to disk without line breaks. For readability
     purposes, use `json.dump?` to figure out how to pretty-print the
     text as well as sort it alphabetically by key.
+-   Read in one of the JSON files in the *project* directory and experiment with pretty-printing it when you dump it back out to a file.
 
 Standard library
 ================
@@ -964,7 +967,7 @@ dat2007['lifeExpZ'] = dat2007.groupby('continent')['lifeExp'].transform(stdize)
 
 **Exercise**
 
-- Use *pd.merge()* to merge the continent means for 2007 back into the original *dat2007* dataFrame.
+- Use *pd.merge()* to merge the continent means for life expectancy for 2007 back into the original *dat2007* dataFrame.
 - Explore the pandas documentation to see if  there is a way to add the continent means as a column without an explicit merge (i.e., mimicing capability built into dply)?
 
 Matplotlib
