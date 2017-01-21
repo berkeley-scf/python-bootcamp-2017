@@ -70,3 +70,5 @@ Make sure to pull the data into Python by writing Python code to download and su
 14.) Use *matplotlib* to make histograms of the number of Obama mentions by senator, stratified by party.
 
     Is this consistent with the results of your statistical analysis?
+
+15.) Please fill out the feedback form for the bootcamp: <https://docs.google.com/forms/d/e/1FAIpQLSepReFeUy-emnMOGCACIQlYCNbfVsfEID4iCTWGeLtOVMWZYA/viewform>.
