@@ -5,9 +5,9 @@ title: Python bootcamp project
 Background
 ============
 
-The file **fetch_senator_tweets.py** downloads tweets using the Python twitter package to interact with Twitter's API.
+The file **fetch_senator_tweets.py** downloads tweets using the Python twitter package to interact with Twitter's API. You will only be able to run that code if you set up your own Twitter account and follow the instructions at the start of the file regarding filling in the authentication information (CONSUMER_KEY, CONSUMER_SECRET, etc.).
 
-The downloaded information on the senators' twitter accounts is in *senators-list.json*, while the downloaded tweets are in *timelines.json*. Note that there are only 100 tweets for each senator because of limits on how many tweets can be accessed in a given request. 
+I've already run the code and downloaded the data for you.  The downloaded information on the senators' twitter accounts is in *senators-list.json*, while the downloaded tweets are in *timelines.json*. Note that there are only 200 tweets for each senator because of limits on how many tweets can be accessed in a given request. *timelines.json* is too big to put in the Github repository. You can find it at <http://www.stat.berkeley.edu/~paciorek/transfer/timelines.json>.
 
 Questions
 ===========
@@ -37,7 +37,7 @@ Questions
     clean(tweets[0][0])
     ```
 
-    If your goal is to convert the tweet into a discrete set of words, what is going wrong here? Fix up and extend the example function.
+    Note that the function I've provided is a bit buggy - it has some problems with some tweets. If your goal is to convert the tweet into a discrete set of words, what is going wrong here? Fix up and extend the example function.
 
 
 8. Use the following file to create a list, called *stopwords*, that contains common english words.  <http://www.textfixer.com/resources/common-english-words.txt>

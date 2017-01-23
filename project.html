@@ -31,8 +31,8 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <h1 class="title">Python bootcamp project</h1>
 </div>
 <h1 id="background">Background</h1>
-<p>The file <strong>fetch_senator_tweets.py</strong> downloads tweets using the Python twitter package to interact with Twitter's API.</p>
-<p>The downloaded information on the senators' twitter accounts is in <em>senators-list.json</em>, while the downloaded tweets are in <em>timelines.json</em>. Note that there are only 100 tweets for each senator because of limits on how many tweets can be accessed in a given request.</p>
+<p>The file <strong>fetch_senator_tweets.py</strong> downloads tweets using the Python twitter package to interact with Twitter's API. You will only be able to run that code if you set up your own Twitter account and follow the instructions at the start of the file regarding filling in the authentication information (CONSUMER_KEY, CONSUMER_SECRET, etc.).</p>
+<p>I've already run the code and downloaded the data for you. The downloaded information on the senators' twitter accounts is in <em>senators-list.json</em>, while the downloaded tweets are in <em>timelines.json</em>. Note that there are only 200 tweets for each senator because of limits on how many tweets can be accessed in a given request. <em>timelines.json</em> is too big to put in the Github repository. You can find it at <a href="http://www.stat.berkeley.edu/~paciorek/transfer/timelines.json">http://www.stat.berkeley.edu/~paciorek/transfer/timelines.json</a>.</p>
 <h1 id="questions">Questions</h1>
 <ol style="list-style-type: decimal">
 <li><p>Load the <em>senators-list.json</em> and <em>timelines.json</em> files as objects called <em>senators</em> and <em>timelines</em>.</p></li>
@@ -50,7 +50,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
     <span class="kw">return</span> <span class="st">&#39; &#39;</span>.join(cleaned_words)
 
 <span class="kw">clean</span>(tweets[0][0])</code></pre>
-<p>If your goal is to convert the tweet into a discrete set of words, what is going wrong here? Fix up and extend the example function.</p></li>
+<p>Note that the function I've provided is a bit buggy - it has some problems with some tweets. If your goal is to convert the tweet into a discrete set of words, what is going wrong here? Fix up and extend the example function.</p></li>
 <li><p>Use the following file to create a list, called <em>stopwords</em>, that contains common english words. <a href="http://www.textfixer.com/resources/common-english-words.txt">http://www.textfixer.com/resources/common-english-words.txt</a> Make sure to pull the data into Python by writing Python code to download and suck the data into Python.</p></li>
 <li><p>Write a function, called <em>tokenize</em>, which takes a tweet, cleans it, and removes all punctuation and stopwords.</p></li>
 <li><p>Create a list of lists, tweets_content, using your <em>tokenize</em> function.</p></li>
